@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ejercicio_de_matrices
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Inicializacion de variables
+            byte i, j, numAlumnos, salones;
+            double sumaCalif = 0, promedio, califMin = 10, califMax = 0;
+            //Pedimos el numero de salones
+            Console.Write("Ingrese el numero de Salones: ");
+            salones = Convert.ToByte(Console.ReadLine());
+            //Pedimos el numero de alumnos por salon
+            Console.Write("Ingrese el numero de alumnos por salon: ");
+            numAlumnos = Convert.ToByte(Console.ReadLine());
+            //Creacion de la matriz            
+            double[,] calificaciones = new double[salones, numAlumnos];
+            //Pedimos calificaciones con un FOR
+            for (i = 0; i < salones; i++)
+            {
+                for (j = 0; j < numAlumnos; j++)
+                {
+                    Console.Write("Ingrese la calificacion: ");
+                    calificaciones[i, j] = Convert.ToByte(Console.ReadLine());
+                    //Acumulamos la calificacion
+                    sumaCalif += calificaciones[i, j];
+                }
+                
+            }
+            //Calculamos el promedio
+            promedio = sumaCalif / (salones * numAlumnos);
+            //Pedimos Calificacion Minima
+            for (i = 1; i < salones; i++)
+            {
+                for (j = 0; j < numAlumnos; j++)
+                {
+                    if (calificaciones[i, j] < califMin)
+                    {
+                        califMin = calificaciones[i, j];
+                    }
+                }
+                 
+            }
+            //Calculamos la Calificacion Maxima
+            for (i = 1; i < salones; i++)
+            {
+                for (j = 0; j < numAlumnos; j++)
+                {
+                    if (calificaciones[i, j] > califMax)
+                    {
+                        califMin = calificaciones[i, j];
+                    }
+                }
+                 
+            }
+            Console.WriteLine("El promedio es {0}", promedio);
+            Console.WriteLine("La calificacion minima es {0}", califMin);
+            Console.WriteLine("La calificacion maxima es {0}", califMax);
+
+
+
+
+        }
+    }
+}
